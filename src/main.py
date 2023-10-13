@@ -44,11 +44,12 @@ def main():
             'files': [{
                 'name': 'appsscript',
                 'type': 'JSON',
-                'source': f'''{
-                        "timeZone": "{ENV.TIMEZONE}",
+                'source': '''
+                    {
+                        "timeZone": "{}",
                         "exceptionLogging": "CLOUD"
                     }
-                    '''.strip()
+                    '''.format(ENV.TIMEZONE).strip()
             }]
         }
         # loop through gs files in webflow directory
