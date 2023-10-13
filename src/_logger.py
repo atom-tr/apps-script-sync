@@ -42,6 +42,10 @@ class Logger:
     def w(self, message: str, **kwargs):
         message = self._process_template(message, kwargs)
         self._logger.warning(f"{self._YELLOW}{message}{self._RESET}")
+    
+    def e(self, message: str, **kwargs):
+        message = self._process_template(message, kwargs)
+        self._logger.error(f"{self._RED}{message}{self._RESET}")
 
     def p(self, message: str, **kwargs):
         message = self._process_template(message, kwargs)

@@ -92,8 +92,8 @@ if __name__ == '__main__':
         main()
         print("status=succeeded")
     except Exception as e:
-        logger.p("Program execution failed with error: $error.", error=e)
-        print("status=failed")
+        logger.e("Program execution failed with error: $error.", error=e)
+        print(f"status=failed\nerror={e}")
         error = True
     end_time = datetime.now()
     logger.g("Program execution finished at $date.", date=end_time)
