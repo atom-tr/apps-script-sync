@@ -12,7 +12,7 @@ inputs:
   
   PROJECT_PATH:
     description: "ProjectPath"
-    required: true
+    default: "src"
   
   TIMEZONE:
     description: "TimeZone"
