@@ -7,7 +7,6 @@ from __future__ import print_function
 
 import os.path
 import json
-from manager_environment import EnvironmentManager as ENV
 
 # from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -15,22 +14,28 @@ from google.oauth2.credentials import Credentials
 from googleapiclient import errors
 from googleapiclient.discovery import build
 
+
+from manager_environment import EnvironmentManager as ENV
+from manager_github import GitHubManager
+
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/script.projects']
 
 MANIFEST = {
-  "timeZone": f"{ENV.TIMEZONE}",
-  "exceptionLogging": "CLOUD"
+    "timeZone": f"{ENV.TIMEZONE}",
+    "exceptionLogging": "CLOUD"
 }
+
 
 def main():
     """Calls the Apps Script API.
     """
+    GitHubManager.prepare_github_env()
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
     # time.
-    token ={
+    token = {
         'refresh_token': ENV.REFRESH_TOKEN,
         "token_uri": "https://oauth2.googleapis.com/token",
         "client_id": ENV.CLIENT_ID,
@@ -52,7 +57,7 @@ def main():
             }]
         }
         # loop through gs files in webflow directory
-        for file in os.listdir(ENV.PROJECT_PATH):
+        for file in os.listdir(f'repo/{ENV.PROJECT_PATH}'):
             if file.endswith('.gs'):
                 with open(os.path.join('.', file), 'r') as f:
                     request['files'].append({
@@ -64,6 +69,7 @@ def main():
     except errors.HttpError as error:
         # The API encountered a problem.
         print(error.content)
+
 
 if __name__ == '__main__':
     main()

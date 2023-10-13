@@ -2,6 +2,14 @@ name: "script.google.com project sync action"
 description: "script.google.com project sync action"
 author: "Thai Tran"
 inputs:
+  GH_TOKEN:
+    description: "GitHub Token"
+    required: true
+
+  REPO_NAME:
+    description: "Repository Name"
+    required: true
+  
   PROJECT_ID:
     description: "ProjectId"
     required: true

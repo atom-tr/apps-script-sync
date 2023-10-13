@@ -9,7 +9,9 @@ class EnvironmentManager:
 
     _TRUTHY = ["true", "1", "t", "y", "yes"]
 
-	# Google Script
+    GH_TOKEN = getenv("INPUT_GH_TOKEN")
+    REPO_NAME = getenv("INPUT_REPO_NAME")
+    # Google Script
     PROJECT_ID = environ["INPUT_PROJECT_ID"]
     PROJECT_NAME = environ["INPUT_PROJECT_NAME"]
     PROJECT_PATH = environ["INPUT_PROJECT_PATH"]

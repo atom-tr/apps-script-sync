@@ -1,3 +1,8 @@
+# Google API modules:
 google-api-python-client
 google-auth-httplib2 
 google-auth-oauthlib
+
+# GitHub integration modules:
+PyGithub~=1.58
+GitPython~=3.1
