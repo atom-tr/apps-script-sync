@@ -6,7 +6,7 @@ project, and log the script's URL to the user.
 from __future__ import print_function
 
 import os.path
-from manager_environment import ManagerEnvironment as ENV
+from manager_environment import EnvironmentManager as ENV
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -16,6 +16,13 @@ from googleapiclient.discovery import build
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/script.projects']
+
+MANIFEST = '''
+{
+  "timeZone": "{}",
+  "exceptionLogging": "CLOUD"
+}
+'''.format(ENV.TIMEZONE).strip()
 
 def main():
     """Calls the Apps Script API.
@@ -44,12 +51,7 @@ def main():
             'files': [{
                 'name': 'appsscript',
                 'type': 'JSON',
-                'source': '''
-                    {
-                        "timeZone": "{}",
-                        "exceptionLogging": "CLOUD"
-                    }
-                    '''.format(ENV.TIMEZONE).strip()
+                'source': MANIFEST
             }]
         }
         # loop through gs files in webflow directory
