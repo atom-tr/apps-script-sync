@@ -31,7 +31,7 @@ class GitHubManager:
         cls.USER = github.get_user()
         rmtree(clone_path, ignore_errors=True)
 
-        cls._REMOTE_NAME = f"{cls.USER.login}/{EM.GITHUB_REPOSITORY}"
+        cls._REMOTE_NAME = f"{cls.USER.login}/{EM.REPO_NAME}"
         cls._REPO_PATH = f"https://{EM.GH_TOKEN}@github.com/{cls._REMOTE_NAME}.git"
 
         cls.REMOTE = github.get_repo(cls._REMOTE_NAME)
