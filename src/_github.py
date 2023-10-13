@@ -6,7 +6,9 @@ environ["GIT_PYTHON_REFRESH"] = "quiet"
 from git import Repo
 from github import Github, AuthenticatedUser, Repository
 
-from manager_environment import EnvironmentManager as EM
+# from manager_environment import EnvironmentManager as EM
+
+GH_TOKEN = environ["INPUT_GH_TOKEN"]
 
 
 class GitHubManager:
@@ -26,13 +28,13 @@ class GitHubManager:
         - Named repo of the user [username]/[username].
         - Clone of the named repo.
         """
-        github = Github(EM.GH_TOKEN)
+        github = Github(GH_TOKEN)
         clone_path = "repo"
         # cls.USER = github.get_user()
         rmtree(clone_path, ignore_errors=True)
 
-        cls._REMOTE_NAME = EM.GITHUB_REPOSITORY
-        cls._REPO_PATH = f"https://{EM.GH_TOKEN}@github.com/{cls._REMOTE_NAME}.git"
+        cls._REMOTE_NAME = environ["GITHUB_REPOSITORY"]
+        cls._REPO_PATH = f"https://{GH_TOKEN}@github.com/{cls._REMOTE_NAME}.git"
 
         cls.REMOTE = github.get_repo(cls._REMOTE_NAME)
         cls.REPO = Repo.clone_from(cls._REPO_PATH, to_path=clone_path)

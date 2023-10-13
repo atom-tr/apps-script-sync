@@ -11,7 +11,7 @@ jobs:
         with:
           python-version: "3.11"
           
-      - name: Lint
+      - name: Lint with flake8
         run: |
           pip install flake8
           flake8 --ignore E501,E402 src/
