@@ -18,7 +18,7 @@ class GitHubManager:
     _REMOTE_PATH: str
     _SINGLE_COMMIT_BRANCH = "latest_branch"
 
-    @staticmethod
+    @classmethod
     def prepare_github_env(cls):
         """
         Download and store for future use:
@@ -37,7 +37,7 @@ class GitHubManager:
         cls.REMOTE = github.get_repo(cls._REMOTE_NAME)
         cls.REPO = Repo.clone_from(cls._REPO_PATH, to_path=clone_path)
 
-    @staticmethod
+    @classmethod
     def branch(cls, requested_branch: str) -> str:
         """
         Gets requested branch name or the default branch name if requested branch wasn't found.
