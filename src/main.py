@@ -87,8 +87,10 @@ def main():
 if __name__ == '__main__':
     start_time = datetime.now()
     logger.g("Program execution started at $date.", date=start_time)
-    try: main()
-    except Exception as e: logger.p("Program execution failed with error: $error.", error=e)
+    try:
+        main()
+    except Exception as e:
+        logger.p("Program execution failed with error: $error.", error=e)
     end_time = datetime.now()
     logger.g("Program execution finished at $date.", date=end_time)
     logger.p("Program finished in $time.", time=end_time - start_time)
