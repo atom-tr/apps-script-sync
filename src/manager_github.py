@@ -1,7 +1,8 @@
-from os import makedirs
+from os import makedirs, environ
 from os.path import dirname, join
 from shutil import copy, rmtree
 
+environ["GIT_PYTHON_REFRESH"] = "quiet"
 from git import Repo
 from github import Github, AuthenticatedUser, Repository
 
