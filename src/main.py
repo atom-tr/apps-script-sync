@@ -57,9 +57,10 @@ def main():
             }]
         }
         # loop through gs files in webflow directory
-        for file in os.listdir(f'repo/{ENV.PROJECT_PATH}'):
+        repo_path = f'repo/{ENV.PROJECT_PATH}'
+        for file in os.listdir(repo_path):
             if file.endswith('.gs'):
-                with open(os.path.join('.', file), 'r') as f:
+                with open(os.path.join(repo_path, file), 'r') as f:
                     request['files'].append({
                         'name': file,
                         'type': 'SERVER_JS',
