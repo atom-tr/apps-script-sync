@@ -9,9 +9,9 @@ import os.path
 import json
 from manager_environment import EnvironmentManager as ENV
 
-from google.auth.transport.requests import Request
+# from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
+# from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient import errors
 from googleapiclient.discovery import build
 
@@ -39,11 +39,9 @@ def main():
             "https://www.googleapis.com/auth/script.projects"
         ],
     }
-    creds = Credentials.from_authorized_user_file('token.json', SCOPES)
-
+    creds = Credentials.from_authorized_user_info(token, SCOPES)
     try:
         service = build('script', 'v1', credentials=creds)
-
         # Call the Apps Script API
         # Upload two files to the project
         request = {
@@ -66,7 +64,6 @@ def main():
     except errors.HttpError as error:
         # The API encountered a problem.
         print(error.content)
-
 
 if __name__ == '__main__':
     main()
