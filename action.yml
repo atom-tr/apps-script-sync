@@ -5,17 +5,9 @@ inputs:
   GH_TOKEN:
     description: "GitHub Token"
     required: true
-
-  REPO_NAME:
-    description: "Repository Name"
-    required: true
   
   PROJECT_ID:
     description: "ProjectId"
-    required: true
-  
-  PROJECT_NAME:
-    description: "ProjectName"
     required: true
   
   PROJECT_PATH:
