@@ -1,0 +1,39 @@
+name: "script.google.com project sync action"
+description: "script.google.com project sync action"
+author: "Thai Tran"
+inputs:
+  PROJECT_ID:
+    description: "ProjectId"
+    required: true
+  
+  PROJECT_NAME:
+    description: "ProjectName"
+    required: true
+  
+  PROJECT_PATH:
+    description: "ProjectPath"
+    required: true
+  
+  TIMEZONE:
+    description: "TimeZone"
+    default: "Asia/Ho_Chi_Minh"
+  
+  CLIENT_TYPE:
+    description: "client_type"
+    default: "installed"
+  
+  CLIENT_ID:
+    description: "client_id"
+    required: true
+  
+  CLIENT_SECRET:
+    description: "client_secret"
+    required: true
+  
+  REFRESH_TOKEN:
+    description: "refresh_token"
+    required: true
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
