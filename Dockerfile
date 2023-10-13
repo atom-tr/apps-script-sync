@@ -10,4 +10,4 @@ RUN apk add --no-cache g++ zlib-dev make git && pip3 install -r /app/requirement
 
 ADD src/* /app/
 ENV PYTHONPATH /app
-ENTRYPOINT cd /app/ && python3 main.py
+ENTRYPOINT cd /app/ && python3 main.py >> $GITHUB_OUTPUT
