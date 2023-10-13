@@ -10,7 +10,7 @@ class EnvironmentManager:
     _TRUTHY = ["true", "1", "t", "y", "yes"]
 
     GH_TOKEN = getenv("INPUT_GH_TOKEN")
-    REPO_NAME = getenv("INPUT_REPO_NAME")
+    GITHUB_REPOSITORY = getenv("GITHUB_REPOSITORY")
     # Google Script
     PROJECT_ID = environ["INPUT_PROJECT_ID"]
     PROJECT_NAME = environ["INPUT_PROJECT_NAME"]
