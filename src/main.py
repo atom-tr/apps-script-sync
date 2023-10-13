@@ -1,5 +1,3 @@
-from manager_environment import ManagerEnvironment as ENV
-
 """
 Shows basic usage of the Apps Script API.
 Call the Apps Script API to create a new script project, upload a file to the
@@ -8,6 +6,7 @@ project, and log the script's URL to the user.
 from __future__ import print_function
 
 import os.path
+from manager_environment import ManagerEnvironment as ENV
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
