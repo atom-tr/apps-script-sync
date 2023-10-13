@@ -7,11 +7,11 @@ from humanize import precisedelta
 
 
 class Logger:
-    _COLOR_RESET = "\u001B[0m"
-    _COLOR_RED = "\u001B[31m"
-    _COLOR_GREEN = "\u001B[32m"
-    _COLOR_BLUE = "\u001B[34m"
-    _COLOR_YELLOW = "\u001B[33m"
+    _RESET = "\u001B[0m"
+    _RED = "\u001B[31m"
+    _GREEN = "\u001B[32m"
+    _BLUE = "\u001B[34m"
+    _YELLOW = "\u001B[33m"
 
     _DATE_TEMPLATE = "date"
     _TIME_TEMPLATE = "time"
@@ -23,31 +23,26 @@ class Logger:
         self._logger.setLevel(level)
         self._logger.addHandler(StreamHandler())
 
-    @classmethod
-    def _process_template(cls, message: str, kwargs: Dict) -> str:
-        if cls._DATE_TEMPLATE in kwargs:
-            kwargs[cls._DATE_TEMPLATE] = f"{datetime.strftime(kwargs[cls._DATE_TEMPLATE], '%d-%m-%Y %H:%M:%S:%f')}"
-        if cls._TIME_TEMPLATE in kwargs:
-            kwargs[cls._TIME_TEMPLATE] = precisedelta(kwargs[cls._TIME_TEMPLATE], minimum_unit="microseconds")
+    def _process_template(self, message: str, kwargs: Dict) -> str:
+        if self._DATE_TEMPLATE in kwargs:
+            kwargs[self._DATE_TEMPLATE] = f"{datetime.strftime(kwargs[self._DATE_TEMPLATE], '%d-%m-%Y %H:%M:%S:%f')}"
+        if self._TIME_TEMPLATE in kwargs:
+            kwargs[self._TIME_TEMPLATE] = precisedelta(kwargs[self._TIME_TEMPLATE], minimum_unit="microseconds")
 
         return Template(message).substitute(kwargs)
 
-    @classmethod
-    def g(cls, message: str, **kwargs):
-        message = cls._process_template(message, kwargs)
-        cls._logger.info(f"{cls._COLOR_GREEN}{message}{cls._COLOR_RESET}")
+    def g(self, message: str, **kwargs):
+        message = self._process_template(message, kwargs)
+        self._logger.info(f"{self._GREEN}{message}{self._RESET}")
 
-    @classmethod
-    def i(cls, message: str, **kwargs):
-        message = cls._process_template(message, kwargs)
-        cls._logger.debug(f"{cls._COLOR_BLUE}{message}{cls._COLOR_RESET}")
+    def i(self, message: str, **kwargs):
+        message = self._process_template(message, kwargs)
+        self._logger.debug(f"{self._BLUE}{message}{self._RESET}")
 
-    @classmethod
-    def w(cls, message: str, **kwargs):
-        message = cls._process_template(message, kwargs)
-        cls._logger.warning(f"{cls._COLOR_YELLOW}{message}{cls._COLOR_RESET}")
+    def w(self, message: str, **kwargs):
+        message = self._process_template(message, kwargs)
+        self._logger.warning(f"{self._YELLOW}{message}{self._RESET}")
 
-    @classmethod
-    def p(cls, message: str, **kwargs):
-        message = cls._process_template(message, kwargs)
-        cls._logger.error(message)
+    def p(self, message: str, **kwargs):
+        message = self._process_template(message, kwargs)
+        self._logger.error(message)
